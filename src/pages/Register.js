@@ -8,20 +8,9 @@ function Register() {
   const [password, setPassword] = useState('');
   const [generatedPassword, setGeneratedPassword] = useState('');
 
-  // Función para obtener una contraseña generada del microservicio
-  const generatePassword = async () => {
-    try {
-      const res = await axios.get('http://3.213.102.18:8002/generate-password');
-      setGeneratedPassword(res.data.password); // Guardamos la contraseña generada
-      setPassword(res.data.password); // Auto-llena el campo de contraseña
-    } catch (err) {
-      alert('Error al generar la contraseña');
-    }
-  };
-
   const handleRegister = async () => {
     try {
-      const res = await axios.post('http://54.85.217.202/api/register', {
+      const res = await axios.post('http://54.162.152.155:8002/register', {
         email,
         password
       });
@@ -54,18 +43,6 @@ function Register() {
           onChange={(e) => setPassword(e.target.value)}
           className="register-input"
         />
-
-        {/* Botón para generar la contraseña */}
-        <button onClick={generatePassword} className="generate-password-button">
-          Generar Contraseña Segura
-        </button>
-
-        {/* Mostrar la contraseña generada debajo del campo de contraseña */}
-        {generatedPassword && (
-          <p className="generated-password">
-            Contraseña generada: {generatedPassword}
-          </p>
-        )}
 
         <button onClick={handleRegister} className="register-button">
           Registrar

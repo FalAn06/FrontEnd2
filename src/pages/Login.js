@@ -10,26 +10,10 @@ function Login() {
   const [captchaText, setCaptchaText] = useState(''); // Estado para guardar el texto ingresado por el usuario
   const navigate = useNavigate();
 
-  // Función para obtener la imagen del captcha
-  useEffect(() => {
-    const fetchCaptcha = async () => {
-      try {
-        const response = await axios.get('http://3.213.102.18:5000/generate-captcha', { responseType: 'blob' });
-        
-        // Crear una URL del objeto blob
-        const imageUrl = URL.createObjectURL(response.data);
-        setCaptcha(imageUrl);
-      } catch (err) {
-        console.error('Error al cargar el captcha:', err);
-      }
-    };
-
-    fetchCaptcha(); // Llamar a la función al montar el componente
-  }, []);
 
   const handleLogin = async () => {
     try {
-      const res = await axios.post('http://54.85.217.202/api/login', {
+      const res = await axios.post('http://54.162.152.155:8001/login', {
         email,
         password,
         captcha: captchaText // Incluir el captcha ingresado por el usuario
