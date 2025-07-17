@@ -1,82 +1,110 @@
+/* Estilo general del contenedor de la página de registro */
 .register-container {
   min-height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #f3f4f6;
+  background-color: #e0f7fa; /* Azul claro que recuerda al agua */
 }
 
+/* Caja del formulario de registro con bordes redondeados */
 .register-box {
-  background-color: white;
-  padding: 2rem;
-  border-radius: 8px;
+  background-color: #ffffff;
+  padding: 2.5rem;
+  border-radius: 12px; /* Bordes más redondeados */
   width: 100%;
   max-width: 400px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1); /* Sombra suave */
+  border: 1px solid #00bcd4; /* Bordes de color agua */
 }
 
+/* Título del formulario de registro con un estilo fresco */
 .register-title {
-  font-size: 1.5rem;
-  font-weight: bold;
+  font-size: 1.75rem;
+  font-weight: 600;
   margin-bottom: 1.5rem;
   text-align: center;
-  color: #1f2937;
+  color: #00796b; /* Verde agua */
+  font-family: 'Arial', sans-serif;
 }
 
+/* Estilo para los inputs de registro */
 .register-input {
   width: 100%;
   margin-bottom: 1rem;
   padding: 0.75rem;
-  border: 1px solid #d1d5db;
-  border-radius: 4px;
+  border: 1px solid #00bcd4; /* Bordes de color agua */
+  border-radius: 8px; /* Bordes redondeados */
   font-size: 1rem;
+  background-color: #f1f8f7; /* Fondo suave */
+  transition: border-color 0.3s ease;
 }
 
+/* Estilo al enfocar un input */
+.register-input:focus {
+  border-color: #00796b; /* Resaltar con verde cuando se enfoca */
+  outline: none;
+  background-color: #ffffff; /* Fondo blanco cuando se enfoca */
+}
+
+/* Botón de registro con color fresco */
 .register-button {
   width: 100%;
   padding: 0.75rem;
-  background-color: #2563eb;
+  background-color: #00796b; /* Verde agua */
   color: white;
   font-weight: 600;
   border: none;
-  border-radius: 4px;
+  border-radius: 8px;
   cursor: pointer;
   transition: background-color 0.3s ease;
+  font-family: 'Arial', sans-serif;
 }
 
+/* Hover en el botón */
 .register-button:hover {
-  background-color: #1d4ed8;
+  background-color: #004d40; /* Un verde más oscuro al pasar el cursor */
 }
 
+/* Pie de página con texto de enlace */
 .register-footer {
   margin-top: 1rem;
   text-align: center;
   font-size: 0.875rem;
-  color: #6b7280;
+  color: #00796b; /* Verde agua suave */
+  font-family: 'Arial', sans-serif;
 }
 
+/* Enlaces del pie de página */
 .register-link {
-  color: #2563eb;
+  color: #00796b; /* Verde agua */
   text-decoration: none;
+  font-weight: bold;
+  font-family: 'Arial', sans-serif;
 }
 
+/* Hover de los enlaces */
 .register-link:hover {
   text-decoration: underline;
+  color: #004d40; /* Un verde más oscuro al pasar el cursor */
 }
 
+/* Botón para generar contraseña con un color verde */
 .generate-password-button {
-  background-color: #4CAF50;
+  background-color: #4caf50; /* Verde */
   color: white;
   padding: 10px;
   border: none;
   cursor: pointer;
   margin-top: 10px;
+  border-radius: 8px;
 }
 
 .generate-password-button:hover {
-  background-color: #45a049;
+  background-color: #45a049; /* Verde más oscuro */
 }
 
+/* Estilo para mostrar la contraseña generada */
 .generated-password {
   margin-top: 10px;
   font-size: 14px;

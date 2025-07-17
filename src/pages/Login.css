@@ -1,65 +1,114 @@
+/* Estilo general del contenedor de la página */
 .login-container {
   min-height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #f3f4f6;
+  background-color: #e0f7fa; /* Un color azul claro que recuerda al agua */
 }
 
+/* Caja de login con fondo blanco y bordes redondeados */
 .login-box {
-  background-color: white;
-  padding: 2rem;
-  border-radius: 8px;
+  background-color: #ffffff;
+  padding: 2.5rem;
+  border-radius: 12px; /* Bordes más redondeados */
   width: 100%;
   max-width: 400px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1); /* Sombra suave */
+  border: 1px solid #00bcd4; /* Bordes de color agua */
 }
 
+/* Título con un estilo moderno y fresco */
 .login-title {
-  font-size: 1.5rem;
-  font-weight: bold;
+  font-size: 1.75rem;
+  font-weight: 600;
   margin-bottom: 1.5rem;
   text-align: center;
-  color: #1f2937;
+  color: #00796b; /* Color verde agua que evoca frescura */
+  font-family: 'Arial', sans-serif;
 }
 
+/* Estilo de los inputs con un toque fresco */
 .login-input {
   width: 100%;
   margin-bottom: 1rem;
   padding: 0.75rem;
-  border: 1px solid #d1d5db;
-  border-radius: 4px;
+  border: 1px solid #00bcd4; /* Bordes de color agua */
+  border-radius: 8px; /* Bordes redondeados */
   font-size: 1rem;
+  background-color: #f1f8f7; /* Fondo suave */
+  transition: border-color 0.3s ease;
 }
 
+/* Cuando el input es enfocado */
+.login-input:focus {
+  border-color: #00796b; /* Resaltar con un color verde */
+  outline: none;
+  background-color: #ffffff; /* Fondo blanco cuando se enfoca */
+}
+
+/* Botón de login con un color azul que recuerda al agua */
 .login-button {
   width: 100%;
   padding: 0.75rem;
-  background-color: #2563eb;
+  background-color: #00796b; /* Verde agua */
   color: white;
   font-weight: 600;
   border: none;
-  border-radius: 4px;
+  border-radius: 8px;
   cursor: pointer;
   transition: background-color 0.3s ease;
+  font-family: 'Arial', sans-serif;
 }
 
+/* Hover para el botón */
 .login-button:hover {
-  background-color: #1e40af;
+  background-color: #004d40; /* Un verde más oscuro al pasar el cursor */
 }
 
+/* Pie de página con texto más suave */
 .login-footer {
   margin-top: 1rem;
   text-align: center;
   font-size: 0.875rem;
-  color: #6b7280;
+  color: #00796b; /* Verde agua suave */
+  font-family: 'Arial', sans-serif;
 }
 
+/* Enlaces del pie de página */
 .login-link {
-  color: #2563eb;
+  color: #00796b; /* Verde agua */
   text-decoration: none;
+  font-weight: bold;
+  font-family: 'Arial', sans-serif;
 }
 
+/* Hover de los enlaces */
 .login-link:hover {
   text-decoration: underline;
+  color: #004d40; /* Un verde más oscuro al pasar el cursor */
+}
+
+/* Estilo del captcha */
+.login-captcha-container {
+  margin-top: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.login-captcha-container img {
+  max-width: 100%;
+  margin-bottom: 1rem;
+  border-radius: 8px;
+}
+
+.login-captcha-container input {
+  width: 70%;
+  padding: 0.5rem;
+  border: 1px solid #00bcd4;
+  border-radius: 8px;
+  font-size: 1rem;
+  text-align: center;
+  margin-bottom: 1rem;
 }
