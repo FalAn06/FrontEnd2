@@ -10,7 +10,6 @@ function Login() {
   const [captchaText, setCaptchaText] = useState(''); // Estado para guardar el texto ingresado por el usuario
   const navigate = useNavigate();
 
-
   const handleLogin = async () => {
     try {
       const res = await axios.post('http://54.162.152.155:8001/login', {
@@ -30,6 +29,9 @@ function Login() {
   return (
     <div className="login-container">
       <div className="login-box">
+        {/* Logo Water Market */}
+        <h1 className="login-logo">Water Market</h1>
+
         <h2 className="login-title">Iniciar sesión </h2>
 
         <input

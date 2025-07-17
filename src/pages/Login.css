@@ -4,7 +4,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #e0f7fa; /* Un color azul claro que recuerda al agua */
+  background-color: #e0f7fa; /* Azul claro que recuerda al agua */
 }
 
 /* Caja de login con fondo blanco y bordes redondeados */
@@ -18,13 +18,23 @@
   border: 1px solid #00bcd4; /* Bordes de color agua */
 }
 
-/* Título con un estilo moderno y fresco */
+/* Logo Water Market */
+.login-logo {
+  font-size: 3rem; /* Tamaño grande */
+  font-weight: bold;
+  text-align: center;
+  color: #00796b; /* Verde agua */
+  margin-bottom: 2rem; /* Espaciado debajo del logo */
+  font-family: 'Arial', sans-serif;
+}
+
+/* Título de login */
 .login-title {
   font-size: 1.75rem;
   font-weight: 600;
   margin-bottom: 1.5rem;
   text-align: center;
-  color: #00796b; /* Color verde agua que evoca frescura */
+  color: #00796b; /* Verde agua */
   font-family: 'Arial', sans-serif;
 }
 
@@ -87,28 +97,4 @@
 .login-link:hover {
   text-decoration: underline;
   color: #004d40; /* Un verde más oscuro al pasar el cursor */
-}
-
-/* Estilo del captcha */
-.login-captcha-container {
-  margin-top: 1.5rem;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.login-captcha-container img {
-  max-width: 100%;
-  margin-bottom: 1rem;
-  border-radius: 8px;
-}
-
-.login-captcha-container input {
-  width: 70%;
-  padding: 0.5rem;
-  border: 1px solid #00bcd4;
-  border-radius: 8px;
-  font-size: 1rem;
-  text-align: center;
-  margin-bottom: 1rem;
 }
