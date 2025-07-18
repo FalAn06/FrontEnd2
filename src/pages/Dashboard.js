@@ -10,6 +10,7 @@ function Dashboard() {
   const [profilePic, setProfilePic] = useState(null);
   const [description, setDescription] = useState('');
   const [menuOpen, setMenuOpen] = useState(false); // Estado para controlar el menú desplegable
+  const [randomFrase, setRandomFrase] = useState(''); // Estado para la frase aleatoria
 
   // Usamos useEffect para cargar los datos del usuario al montar el componente
   useEffect(() => {
@@ -30,6 +31,27 @@ function Dashboard() {
             setDescription(data.description || 'Sin descripción');
           })
           .catch((err) => console.error('Error al cargar descripción:', err));
+
+        // Llamamos al microservicio para obtener la frase aleatoria
+        fetch('http://50.19.246.209:5000/graphql', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            query: `{
+              obtenerFrases
+            }`
+          }),
+        })
+        .then((response) => response.json())
+        .then((data) => {
+          const frases = data.data.obtenerFrases;
+          const randomIndex = Math.floor(Math.random() * frases.length);
+          setRandomFrase(frases[randomIndex]);
+        })
+        .catch((error) => console.error('Error fetching frase:', error));
+
       } catch (err) {
         console.error('Token inválido');
       }
@@ -83,7 +105,7 @@ function Dashboard() {
       {/* Frase debajo del botón de productos */}
       <div className="store-description-container">
         <p className="store-description-text">
-          Tu tienda de confianza para productos y repuestos para el agua, con calidad y entrega rápida.
+          {randomFrase}
         </p>
       </div>
     </div>
