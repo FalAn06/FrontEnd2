@@ -136,3 +136,17 @@
 .view-products-button:hover {
   transform: scale(1.1);
 }
+
+/* Estilo para la frase debajo del botón */
+.store-description-container {
+  margin-top: 2rem;
+  text-align: center;
+}
+
+.store-description-text {
+  font-size: 1.2rem;
+  color: #00796b;
+  font-style: italic;
+  max-width: 600px;
+  margin: 0 auto;
+}

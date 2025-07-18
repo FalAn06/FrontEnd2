@@ -109,6 +109,13 @@ function Dashboard() {
           Ver productos
         </button>
       </div>
+
+      {/* Frase debajo del botón de productos */}
+      <div className="store-description-container">
+        <p className="store-description-text">
+          Tu tienda de confianza para productos y repuestos para el agua, con calidad y entrega rápida.
+        </p>
+      </div>
     </div>
   );
 }
