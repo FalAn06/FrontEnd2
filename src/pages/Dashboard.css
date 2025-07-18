@@ -66,13 +66,12 @@
   position: relative;
 }
 
-.profile-picture-container {
+.profile-picture-wrapper {
   width: 150px;
   height: 150px;
   margin-bottom: 1rem;
-  position: absolute;
-  top: 10%;
-  left: 5%;
+  position: relative;
+  top: 5%;
 }
 
 .profile-picture {
@@ -97,10 +96,15 @@
 
 .file-input {
   margin-top: 1rem;
+  padding: 0.5rem;
+  background-color: #ffffff;
+  border-radius: 8px;
+  cursor: pointer;
 }
 
+/* Estilo del email y la descripción */
 .dashboard-email {
-  margin-top: 120px;
+  margin-top: 2rem;
   font-size: 1.2rem;
   color: #00796b;
 }

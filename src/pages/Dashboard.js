@@ -88,9 +88,9 @@ function Dashboard() {
       {/* Título principal */}
       <h1 className="welcome-title">Bienvenido a Water Market</h1>
 
-      {/* Foto de perfil en una esquina */}
+      {/* Foto de perfil en un nuevo contenedor */}
       <div className="profile-container">
-        <div className="profile-picture-container">
+        <div className="profile-picture-wrapper">
           {profilePic ? (
             <img src={profilePic} alt="Perfil" className="profile-picture" />
           ) : (
@@ -98,9 +98,10 @@ function Dashboard() {
           )}
         </div>
         <input type="file" accept="image/*" onChange={handleImageUpload} className="file-input" />
-        <p className="dashboard-email">{email}</p>
-        <p className="user-description">{description}</p>
       </div>
+
+      <p className="dashboard-email">{email}</p>
+      <p className="user-description">{description}</p>
 
       {/* Botón de "Ver productos" */}
       <div className="view-products-container">
