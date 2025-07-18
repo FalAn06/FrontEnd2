@@ -66,6 +66,10 @@ function Dashboard() {
     }
   };
 
+  const handleViewProducts = () => {
+    navigate('/products');  // Redirige a la página de productos
+  };
+
   return (
     <div className="dashboard-container">
       {/* Menú desplegable */}
@@ -81,6 +85,9 @@ function Dashboard() {
         )}
       </div>
 
+      {/* Título principal */}
+      <h1 className="welcome-title">Bienvenido a Water Market</h1>
+
       {/* Foto de perfil en una esquina */}
       <div className="profile-container">
         <div className="profile-picture-container">
@@ -93,6 +100,13 @@ function Dashboard() {
         <input type="file" accept="image/*" onChange={handleImageUpload} className="file-input" />
         <p className="dashboard-email">{email}</p>
         <p className="user-description">{description}</p>
+      </div>
+
+      {/* Botón de "Ver productos" */}
+      <div className="view-products-container">
+        <button onClick={handleViewProducts} className="view-products-button">
+          Ver productos
+        </button>
       </div>
     </div>
   );
