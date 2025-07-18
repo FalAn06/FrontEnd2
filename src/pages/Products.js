@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { jwtDecode } from 'jwt-decode';
 import './Products.css';
 
 const Products = () => {
@@ -7,6 +8,7 @@ const Products = () => {
   const [selectedCategory, setSelectedCategory] = useState('botellones');
   const [reviewText, setReviewText] = useState(''); // Estado para el texto de la reseña
   const [reviews, setReviews] = useState([]); // Estado para las reseñas cargadas
+  const [userId, setUserId] = useState(null); // Estado para el userId
 
   // Datos simulados de productos, ahora con una imagen URL
   const products = {
@@ -102,6 +104,19 @@ const Products = () => {
     ],
   };
 
+  // Decodificar el token para obtener el userId
+  useEffect(() => {
+    const token = localStorage.getItem('token');
+    if (token) {
+      try {
+        const decoded = jwtDecode(token);
+        setUserId(decoded.userId); // Asumiendo que el userId está en el payload del token
+      } catch (error) {
+        console.error('Error al decodificar el token', error);
+      }
+    }
+  }, []);
+
   // Función para manejar el cambio de categoría
   const handleCategoryChange = (category) => {
     setSelectedCategory(category);
@@ -116,7 +131,7 @@ const Products = () => {
 
     const reviewData = {
       productId,
-      user: 'Usuario de ejemplo', // Cambia esto por el usuario real
+      user: userId, // Ahora estamos usando el userId desde el token
       review: reviewText,
       rating: 5, // Este ejemplo tiene una calificación de 5
     };

@@ -7,6 +7,7 @@ import Settings from './pages/Settings';
 import RootDashboard from './pages/RootDashboard';
 import RootLogin from './pages/RootLogin';
 import Products from './pages/Products';
+import Cart from './pages/Cart';
 
 
 
@@ -21,6 +22,7 @@ function App() {
         <Route path="/root-dashboard" element={<RootDashboard />} />
         <Route path="/root-login" element={<RootLogin />} />
         <Route path="/products" element={<Products />} />
+        <Route path="/cart" element={<Cart />} />
       </Routes>
     </Router>
   );
