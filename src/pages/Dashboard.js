@@ -31,27 +31,6 @@ function Dashboard() {
             setDescription(data.description || 'Sin descripción');
           })
           .catch((err) => console.error('Error al cargar descripción:', err));
-
-        // Llamamos al microservicio para obtener la frase aleatoria
-        fetch('http://50.19.246.209:5000/graphql', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({
-            query: `{
-              obtenerFrases
-            }`
-          }),
-        })
-        .then((response) => response.json())
-        .then((data) => {
-          const frases = data.data.obtenerFrases;
-          const randomIndex = Math.floor(Math.random() * frases.length);
-          setRandomFrase(frases[randomIndex]);
-        })
-        .catch((error) => console.error('Error fetching frase:', error));
-
       } catch (err) {
         console.error('Token inválido');
       }
@@ -69,6 +48,28 @@ function Dashboard() {
 
   const handleViewProducts = () => {
     navigate('/products');  // Redirige a la página de productos
+  };
+
+  // Función para obtener la frase aleatoria desde el microservicio
+  const getFrase = () => {
+    fetch('http://50.19.246.209:5000/graphql', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        query: `{
+          obtenerFrases
+        }`
+      }),
+    })
+    .then((response) => response.json())
+    .then((data) => {
+      const frases = data.data.obtenerFrases;
+      const randomIndex = Math.floor(Math.random() * frases.length);
+      setRandomFrase(frases[randomIndex]);
+    })
+    .catch((error) => console.error('Error fetching frase:', error));
   };
 
   return (
@@ -107,6 +108,13 @@ function Dashboard() {
         <p className="store-description-text">
           {randomFrase}
         </p>
+      </div>
+
+      {/* Botón para obtener una nueva frase */}
+      <div className="get-frase-container">
+        <button onClick={getFrase} className="get-frase-button">
+          Obtener una nueva frase
+        </button>
       </div>
     </div>
   );
