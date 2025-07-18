@@ -6,9 +6,11 @@ import './Products.css';
 const Products = () => {
   const navigate = useNavigate();
   const [selectedCategory, setSelectedCategory] = useState('botellones');
-  const [reviewText, setReviewText] = useState(''); // Estado para el texto de la reseña
   const [reviews, setReviews] = useState([]); // Estado para las reseñas cargadas
   const [userId, setUserId] = useState(null); // Estado para el userId
+  const [reviewText, setReviewText] = useState(''); // Estado para el texto de la reseña
+
+  const [cartItems, setCartItems] = useState([]); // Estado para el carrito
 
   // Datos simulados de productos, ahora con una imagen URL
   const products = {
@@ -146,7 +148,8 @@ const Products = () => {
       const data = await response.json();
       if (data.message) {
         alert('Reseña agregada con éxito');
-        setReviewText('');
+        setReviewText(''); // Limpiar el campo de reseña
+        fetchReviews(productId); // Refrescar las reseñas después de agregar una nueva
       } else {
         alert('Error al agregar reseña');
       }
@@ -156,7 +159,7 @@ const Products = () => {
   };
 
   // Función para obtener reseñas de un producto
-  const handleViewReviews = async (productId) => {
+  const fetchReviews = async (productId) => {
     try {
       const response = await fetch(`http://98.85.200.29:5001/reviews?productId=${productId}`);
       const data = await response.json();
@@ -166,31 +169,49 @@ const Products = () => {
     }
   };
 
-  // Función para regresar a la página anterior
-  const goBack = () => {
-    navigate(-1); // Regresa a la página anterior
+  // Función para agregar al carrito
+  const handleAddToCart = async (productId) => {
+    const cartData = {
+      userId,
+      productId,
+      quantity: 1, // Esto puede cambiar dependiendo de la lógica que desees
+    };
+
+    try {
+      const response = await fetch('http://98.85.200.29:5002/cart', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(cartData),
+      });
+
+      const data = await response.json();
+      if (data.message) {
+        alert('Producto agregado al carrito');
+        setCartItems([...cartItems, cartData]); // Agregar el producto al carrito
+      } else {
+        alert('Error al agregar producto al carrito');
+      }
+    } catch (error) {
+      alert('Error al conectar con el servidor');
+    }
+  };
+
+  // Función para ver el carrito
+  const handleViewCart = () => {
+    navigate('/cart');
   };
 
   return (
     <div className="products-container">
-      {/* Barra de categorías */}
       <div className="category-menu">
         <button onClick={() => handleCategoryChange('botellones')}>Botellones</button>
         <button onClick={() => handleCategoryChange('valvulas')}>Válvulas</button>
         <button onClick={() => handleCategoryChange('filtros')}>Filtros</button>
       </div>
 
-      <h1 className="category-title">
-        {selectedCategory.charAt(0).toUpperCase() + selectedCategory.slice(1)}
-      </h1>
-
-      {/* Botón de regresar */}
-      <button onClick={goBack} className="back-button">
-        Regresar
-      </button>
+      <h1 className="category-title">{selectedCategory.charAt(0).toUpperCase() + selectedCategory.slice(1)}</h1>
 
       <div className="products-grid">
-        {/* Mostrar productos de la categoría seleccionada */}
         {products[selectedCategory].map((product, index) => (
           <div key={index} className="product-card">
             <img src={product.imageUrl} alt={product.name} className="product-image" />
@@ -198,29 +219,27 @@ const Products = () => {
             <p>{product.description}</p>
             <p className="product-price">{product.price}</p>
 
-            {/* Botón para añadir reseña */}
+            {/* Botón para añadir al carrito */}
+            <button onClick={() => handleAddToCart(product.productId)} className="add-to-cart-button">
+              Añadir al carrito
+            </button>
+
+            {/* Campo para escribir reseña */}
             <textarea
               placeholder="Escribe tu reseña"
               value={reviewText}
               onChange={(e) => setReviewText(e.target.value)}
               className="review-textarea"
             />
-            <button
-              onClick={() => handleAddReview(product.productId)}
-              className="add-review-button"
-            >
+            <button onClick={() => handleAddReview(product.productId)} className="add-review-button">
               Añadir reseña
             </button>
 
             {/* Botón para ver reseñas */}
-            <button
-              onClick={() => handleViewReviews(product.productId)}
-              className="view-reviews-button"
-            >
+            <button onClick={() => fetchReviews(product.productId)} className="view-reviews-button">
               Ver reseñas
             </button>
 
-            {/* Mostrar reseñas */}
             <div className="reviews-container">
               {reviews.length > 0 ? (
                 reviews.map((review, idx) => (
@@ -237,6 +256,11 @@ const Products = () => {
           </div>
         ))}
       </div>
+
+      {/* Botón para ver carrito */}
+      <button onClick={handleViewCart} className="view-cart-button">
+        Ver mi carrito
+      </button>
     </div>
   );
 };
