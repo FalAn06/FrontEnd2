@@ -9,6 +9,7 @@ function Dashboard() {
   const [email, setEmail] = useState('');
   const [profilePic, setProfilePic] = useState(null);
   const [description, setDescription] = useState('');
+  const [menuOpen, setMenuOpen] = useState(false); // Estado para controlar el menú desplegable
 
   // Usamos useEffect para cargar los datos del usuario al montar el componente
   useEffect(() => {
@@ -67,9 +68,17 @@ function Dashboard() {
 
   return (
     <div className="dashboard-container">
-      <div className="dashboard-header">
-        <button onClick={goToSettings} className="header-button">Configuraciones</button>
-        <button onClick={handleLogout} className="header-button">Cerrar sesión</button>
+      {/* Menú desplegable */}
+      <div className="menu-container">
+        <button onClick={() => setMenuOpen(!menuOpen)} className="menu-button">
+          ☰
+        </button>
+        {menuOpen && (
+          <div className="dropdown-menu">
+            <button onClick={goToSettings} className="dropdown-item">Configuraciones</button>
+            <button onClick={handleLogout} className="dropdown-item">Cerrar sesión</button>
+          </div>
+        )}
       </div>
 
       {/* Foto de perfil en una esquina */}
@@ -84,12 +93,6 @@ function Dashboard() {
         <input type="file" accept="image/*" onChange={handleImageUpload} className="file-input" />
         <p className="dashboard-email">{email}</p>
         <p className="user-description">{description}</p>
-      </div>
-
-      {/* Botones */}
-      <div className="dashboard-actions">
-        <button onClick={goToSettings} className="action-button">Configuraciones</button>
-        <button onClick={handleLogout} className="action-button">Cerrar sesión</button>
       </div>
     </div>
   );

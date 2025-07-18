@@ -8,32 +8,49 @@
   padding: 2rem;
 }
 
-/* Header con botones */
-.dashboard-header {
-  width: 100%;
-  display: flex;
-  justify-content: flex-end;
-  margin-bottom: 1rem;
+/* Contenedor del menú desplegable */
+.menu-container {
+  position: absolute;
+  top: 20px;
+  right: 20px;
 }
 
-/* Estilo de los botones de configuración y cerrar sesión */
-.header-button {
+.menu-button {
   background-color: #00796b;
   color: white;
   padding: 0.75rem;
-  margin-left: 10px;
   border: none;
   border-radius: 8px;
   cursor: pointer;
-  transition: background-color 0.3s ease;
-  font-family: 'Arial', sans-serif;
+  font-size: 1.5rem;
 }
 
-.header-button:hover {
+.dropdown-menu {
+  position: absolute;
+  top: 40px;
+  right: 0;
+  background-color: #ffffff;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  width: 150px;
+}
+
+.dropdown-item {
+  background-color: #00796b;
+  color: white;
+  padding: 0.75rem;
+  border: none;
+  width: 100%;
+  text-align: left;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.dropdown-item:hover {
   background-color: #004d40;
 }
 
-/* Estilo de la foto de perfil */
+/* Foto de perfil */
 .profile-container {
   display: flex;
   flex-direction: column;
@@ -86,28 +103,4 @@
   color: #00796b;
   text-align: center;
   font-style: italic;
-}
-
-/* Sección para las acciones */
-.dashboard-actions {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-top: 2rem;
-}
-
-.action-button {
-  background-color: #00796b;
-  color: white;
-  padding: 0.75rem;
-  margin-bottom: 1rem;
-  width: 200px;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-.action-button:hover {
-  background-color: #004d40;
 }
