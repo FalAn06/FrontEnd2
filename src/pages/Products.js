@@ -177,6 +177,11 @@ const Products = () => {
     }
   };
 
+  // Función para redirigir al carrito
+  const handleViewCart = () => {
+    navigate('/cart');
+  };
+
   return (
     <div className="products-container">
       <div className="category-menu">
