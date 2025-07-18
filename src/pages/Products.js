@@ -6,10 +6,8 @@ import './Products.css';
 const Products = () => {
   const navigate = useNavigate();
   const [selectedCategory, setSelectedCategory] = useState('botellones');
-  const [reviews, setReviews] = useState([]); // Estado para las reseñas cargadas
+  const [reviews, setReviews] = useState({}); // Estado para las reseñas cargadas (por producto)
   const [reviewText, setReviewText] = useState(''); // Estado para el texto de la reseña
-
-  const [cartItems, setCartItems] = useState([]); // Estado para el carrito
 
   const products = {
     botellones: [
@@ -18,7 +16,7 @@ const Products = () => {
         description: 'Ideal para familias grandes',
         price: '$10',
         imageUrl: 'https://imagenestienda1.s3.us-east-1.amazonaws.com/botellones/botellon5litros.jpg',
-        productId: '123', // ID del producto para vincular con las reseñas
+        productId: '123',
       },
       {
         name: 'Botellón de 10L',
@@ -147,40 +145,10 @@ const Products = () => {
     try {
       const response = await fetch(`http://98.85.200.29:5001/reviews?productId=${productId}`);
       const data = await response.json();
-      setReviews(data.reviews);
+      setReviews(prevReviews => ({ ...prevReviews, [productId]: data.reviews }));
     } catch (error) {
       alert('Error al cargar reseñas');
     }
-  };
-
-  // Función para agregar al carrito
-  const handleAddToCart = async (productId) => {
-    const cartData = {
-      productId, // Solo se pasa el productId
-    };
-
-    try {
-      const response = await fetch('http://98.85.200.29:5002/cart', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(cartData),
-      });
-
-      const data = await response.json();
-      if (data.message) {
-        alert('Producto agregado al carrito');
-        setCartItems([...cartItems, cartData]); // Agregar el producto al carrito
-      } else {
-        alert('Error al agregar producto al carrito');
-      }
-    } catch (error) {
-      alert('Error al conectar con el servidor');
-    }
-  };
-
-  // Función para ver el carrito
-  const handleViewCart = () => {
-    navigate('/cart');
   };
 
   return (
@@ -201,12 +169,10 @@ const Products = () => {
             <p>{product.description}</p>
             <p className="product-price">{product.price}</p>
 
-            {/* Botón para añadir al carrito */}
             <button onClick={() => handleAddToCart(product.productId)} className="add-to-cart-button">
               Añadir al carrito
             </button>
 
-            {/* Campo para escribir reseña */}
             <textarea
               placeholder="Escribe tu reseña"
               value={reviewText}
@@ -217,14 +183,13 @@ const Products = () => {
               Añadir reseña
             </button>
 
-            {/* Botón para ver reseñas */}
             <button onClick={() => fetchReviews(product.productId)} className="view-reviews-button">
               Ver reseñas
             </button>
 
             <div className="reviews-container">
-              {reviews.length > 0 ? (
-                reviews.map((review, idx) => (
+              {reviews[product.productId]?.length > 0 ? (
+                reviews[product.productId].map((review, idx) => (
                   <div key={idx} className="review-card">
                     <p><strong>{review.user}</strong></p>
                     <p>{review.review}</p>
@@ -239,7 +204,6 @@ const Products = () => {
         ))}
       </div>
 
-      {/* Botón para ver carrito */}
       <button onClick={handleViewCart} className="view-cart-button">
         Ver mi carrito
       </button>
