@@ -1,19 +1,21 @@
 /* Estilo del contenedor principal de configuración */
 .settings-container {
-  background-color: #e0f7fa; /* Fondo azul claro */
+  background: linear-gradient(45deg, #6a11cb, #2575fc); /* Fondo de gradiente vibrante */
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
   padding: 2rem;
 }
 
 /* Estilo del título principal */
 h2 {
   font-size: 2rem;
-  color: #00796b;
+  color: #ffffff;
   font-weight: bold;
   margin-bottom: 2rem;
+  text-align: center;
 }
 
 /* Sección de cada formulario */
@@ -27,6 +29,7 @@ h2 {
   display: flex;
   flex-direction: column;
   align-items: center;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1); /* Sombra suave */
 }
 
 /* Estilo de los inputs */

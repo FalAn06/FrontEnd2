@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import './Cart.css';
 
 const Cart = () => {
   const navigate = useNavigate();
@@ -40,13 +41,16 @@ const Cart = () => {
 
   return (
     <div className="cart-container">
-      <h1>Mi Carrito</h1>
+      <h1 className="cart-title">Mi Carrito</h1>
       {cartItems.length > 0 ? (
         <div className="cart-items">
           {cartItems.map(item => (
             <div key={item.productId} className="cart-item">
-              <p>Producto ID: {item.productId}</p>
-              <button onClick={() => handleRemoveFromCart(item.productId)} className="remove-button">
+              <p><strong>Producto ID:</strong> {item.productId}</p>
+              <button 
+                onClick={() => handleRemoveFromCart(item.productId)} 
+                className="remove-button"
+              >
                 Eliminar
               </button>
             </div>
@@ -55,6 +59,11 @@ const Cart = () => {
       ) : (
         <p>Tu carrito está vacío.</p>
       )}
+      <div className="back-button-container">
+        <button onClick={() => navigate('/products')} className="back-button">
+          Volver a Productos
+        </button>
+      </div>
     </div>
   );
 };

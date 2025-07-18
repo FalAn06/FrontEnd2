@@ -45,27 +45,6 @@ function Dashboard() {
     navigate('/settings');
   };
 
-  const handleImageUpload = async (e) => {
-    const file = e.target.files[0];
-    if (!file) return;
-
-    const fileName = `profile_pics/${Date.now()}-${file.name}`;
-    const s3URL = `https://chatapp-profile-photos-kamartinez.s3.amazonaws.com/${fileName}`;
-
-    try {
-      await fetch(s3URL, {
-        method: 'PUT',
-        headers: { 'Content-Type': file.type },
-        body: file
-      });
-      setProfilePic(s3URL);
-      localStorage.setItem(`profilePic-${email}`, s3URL);
-    } catch (error) {
-      console.error('Error al subir imagen:', error);
-      alert('Error al subir la imagen');
-    }
-  };
-
   const handleViewProducts = () => {
     navigate('/products');  // Redirige a la página de productos
   };
@@ -88,20 +67,18 @@ function Dashboard() {
       {/* Título principal */}
       <h1 className="welcome-title">Bienvenido a Water Market</h1>
 
-      {/* Foto de perfil en un nuevo contenedor */}
+      {/* Perfil */}
       <div className="profile-container">
         <div className="profile-picture-wrapper">
           {profilePic ? (
-            <img src={profilePic} alt="Perfil" className="profile-picture" />
+            <img src={profilePic} alt="Foto de perfil" className="profile-picture" />
           ) : (
-            <span className="profile-placeholder">Foto</span>
+            <div className="profile-placeholder">Sin Foto</div>
           )}
         </div>
-        <input type="file" accept="image/*" onChange={handleImageUpload} className="file-input" />
+        <p className="dashboard-email">{email}</p>
+        <p className="user-description">{description}</p>
       </div>
-
-      <p className="dashboard-email">{email}</p>
-      <p className="user-description">{description}</p>
 
       {/* Botón de "Ver productos" */}
       <div className="view-products-container">
