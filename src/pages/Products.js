@@ -8,6 +8,7 @@ const Products = () => {
   const [selectedCategory, setSelectedCategory] = useState('botellones');
   const [reviews, setReviews] = useState({}); // Estado para las reseñas cargadas (por producto)
   const [reviewText, setReviewText] = useState(''); // Estado para el texto de la reseña
+  const [cartItems, setCartItems] = useState([]); // Estado para el carrito
 
   const products = {
     botellones: [
@@ -148,6 +149,31 @@ const Products = () => {
       setReviews(prevReviews => ({ ...prevReviews, [productId]: data.reviews }));
     } catch (error) {
       alert('Error al cargar reseñas');
+    }
+  };
+
+  // Función para agregar al carrito
+  const handleAddToCart = async (productId) => {
+    const cartData = {
+      productId, // Solo se pasa el productId
+    };
+
+    try {
+      const response = await fetch('http://98.85.200.29:5002/cart', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(cartData),
+      });
+
+      const data = await response.json();
+      if (data.message) {
+        alert('Producto agregado al carrito');
+        setCartItems([...cartItems, cartData]); // Agregar el producto al carrito
+      } else {
+        alert('Error al agregar producto al carrito');
+      }
+    } catch (error) {
+      alert('Error al conectar con el servidor');
     }
   };
 
