@@ -10,7 +10,7 @@ function RootLogin() {
 
   const handleLogin = async () => {
     try {
-      const res = await axios.post('http://54.162.152.155:8003/loginroot', {
+      const res = await axios.post('http://54.162.152.155/api/root', {
         email,
         password
       });
