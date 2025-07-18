@@ -69,13 +69,6 @@ function Dashboard() {
 
       {/* Perfil */}
       <div className="profile-container">
-        <div className="profile-picture-wrapper">
-          {profilePic ? (
-            <img src={profilePic} alt="Foto de perfil" className="profile-picture" />
-          ) : (
-            <div className="profile-placeholder">Sin Foto</div>
-          )}
-        </div>
         <p className="dashboard-email">{email}</p>
         <p className="user-description">{description}</p>
       </div>

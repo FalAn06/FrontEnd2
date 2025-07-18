@@ -182,6 +182,11 @@ const Products = () => {
     navigate('/cart');
   };
 
+  // Función para regresar a la página anterior
+  const handleGoBack = () => {
+    navigate(-1); // Volver a la página anterior
+  };
+
   return (
     <div className="products-container">
       <div className="category-menu">
@@ -237,6 +242,10 @@ const Products = () => {
 
       <button onClick={handleViewCart} className="view-cart-button">
         Ver mi carrito
+      </button>
+
+      <button onClick={handleGoBack} className="back-button">
+        Regresar
       </button>
     </div>
   );
